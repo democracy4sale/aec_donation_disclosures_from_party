@@ -97,7 +97,7 @@ for x in xrange(upto, len(periods)):
 
 	#print "All forms:", [ form.name  for form in br.forms() ]
  
-	br.select_form(nr=0)
+	br.select_form(nr=2)
 
 	# print br.form
 	# print periods[x]['id']
@@ -107,7 +107,7 @@ for x in xrange(upto, len(periods)):
 	response = br.submit("ctl00$buttonGo")
 
 	response = br.open(annDonorsurl)
-	br.select_form(nr=0)
+	br.select_form(nr=2)
 	#print br.form.controls[10] 
 	items = br.form.controls[10].get_items()
 
@@ -116,7 +116,7 @@ for x in xrange(upto, len(periods)):
 		print "Entity:", item.attrs['label']
 		#item.name
 		response = br.open(annDonorsurl)
-		br.select_form(nr=0)
+		br.select_form(nr=2)
 		br['ctl00$ContentPlaceHolderBody$dropDownListParties']=[item.name]
 		response = br.submit("ctl00$ContentPlaceHolderBody$analysisControl$buttonAnalyse")
 
@@ -130,7 +130,7 @@ for x in xrange(upto, len(periods)):
 			print tds[0].text
 			continue
 
-		br.select_form(nr=0)
+		br.select_form(nr=2)
 		br['ctl00$ContentPlaceHolderBody$pagingControl$cboPageSize']=["500"]
 		response = br.submit("ctl00$ContentPlaceHolderBody$pagingControl$buttonGo")
 		html = response.read()
@@ -223,7 +223,7 @@ for x in xrange(upto, len(periods)):
 			print "multiple pages, doing more now"
 			for page in xrange(1,noPages):
 				print page
-				br.select_form(nr=0)
+				br.select_form(nr=2)
 				br.set_all_readonly(False)
 				br.find_control("ctl00$buttonGo").disabled = True
 				br.find_control("ctl00$ContentPlaceHolderBody$analysisControl$buttonAnalyse").disabled = True
